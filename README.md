@@ -91,8 +91,9 @@ This is a full-stack Student Information System (SIS) built with a React VITE fr
 
 ### 🔗 Backend
 - **Framework**: ASP.NET Core Web API (.NET8.0)
-- **Authentication**: JWT Token for secure user authentication
 - **Data Access**: Entity Framework Core for database operations (CRUD)
+- **Authentication**:MS JwtBearer, JWT Token for secure user authentication
+- **Hash password**:BCrypt.Net-NEXT hash password.
 
 ### 🗄️ Database
 - **MS SQL Server**: Relational database with 7 tables (Roles, Users, Courses, etc.), using primary and foreign keys for data integrity
