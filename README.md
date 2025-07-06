@@ -32,6 +32,8 @@ This is a full-stack Student Information System (SIS) built with a React VITE fr
 
 ## 🖼️ Preview
 
+<img src="./preview/homepage.png" width="70%" alt="Homepage">
+
 <details>
 <summary>🏠 Homepage and Authentication (click to expand)</summary>
 
@@ -84,11 +86,11 @@ This is a full-stack Student Information System (SIS) built with a React VITE fr
 - **Framework**: React + VITE
 - **Styling**: Bootstrap 5, Bootstrap Icons, SCSS
 - **State Management**: React Context API
-- **Routing**: React Router
+- **Routing**: React Router dom
 - **HTTP Requests**: Axios
 
 ### 🔗 Backend
-- **Framework**: ASP.NET Core Web API
+- **Framework**: ASP.NET Core Web API (.NET8.0)
 - **Authentication**: JWT Token for secure user authentication
 - **Data Access**: Entity Framework Core for database operations (CRUD)
 
@@ -147,7 +149,7 @@ fullstack-student-information-system/
    ```
 4. Create the database:
    - **Using EF Core**: Run `dotnet ef database update` to apply migrations
-   - **Using SQL Scripts**: In SSMS, execute `database/create_tables.sql` and `database/insert_sample_data.sql`
+   - **Using SQL Scripts**: In SSMS, execute `database/script.sql`.
 5. Start the API server: `dotnet run`
 
 ---
