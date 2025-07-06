@@ -137,21 +137,42 @@ fullstack-student-information-system/
 ### Frontend Setup
 1. Navigate to the frontend directory: `cd frontend`
 2. Install dependencies: `npm install`
-3. Start the development server: `npm run dev`
+3. Create a `.env` file in the frontend root directory and configure the backend API URL:
+   ```env
+   VITE_API_URL=https://localhost:7001
+   ```
+   > **Note**: Make sure the API URL matches your backend server address. Check `backend/student_information_system/Properties/launchSettings.json` for the correct URL.
+4. Start the development server: `npm run dev`
 
 ### Backend Setup
 1. Navigate to the backend directory: `cd backend/student_information_system`
 2. Restore NuGet packages: `dotnet restore`
-3. Configure the database connection string in `appsettings.json`:
+3. Check the API URL in `Properties/launchSettings.json` to ensure frontend `.env` matches:
+   ```json
+   {
+     "profiles": {
+         "https": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": false,
+            "applicationUrl": "https://localhost:7001;http://localhost:5062",
+            "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+         },
+     }
+   }
+   ```
+4. Configure the database connection string in `appsettings.json`:
    ```json
    "ConnectionStrings": {
      "DefaultConnection": "Server=(localdb);Database=Std_info_sys;User ID=(userid);Password=(password);TrustServerCertificate=true"
    }
    ```
-4. Create the database:
+5. Create the database:
    - **Using EF Core**: Run `dotnet ef database update` to apply migrations
    - **Using SQL Scripts**: In SSMS, execute `database/script.sql`.
-5. Start the API server: `dotnet run`
+6. Start the API server: `dotnet run`
 
 ---
 
