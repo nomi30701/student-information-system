@@ -1,0 +1,27 @@
+﻿# Visual Studio / .NET Core 
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio settings folder
+.vs/
+
+# Launch settings
+Properties/launchSettings.json
+
+# Rider, Resharper 
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet 
+*.nupkg
+packages/
+
+# log and temp
+*.log
+*.vspscc

@@ -1,0 +1,531 @@
+// ============= 共用變數 =============
+$primary-color: #4e54c8;
+$secondary-color: #6c757d;
+$success-color: #0bab64;
+$danger-color: #f43b47;
+$warning-color: #ff9a44;
+$info-color: #00b8d4;
+$light-color: #f8f9fa;
+$dark-color: #2c3e50;
+$border-color: #dee2e6;
+
+// ============= 基礎 Modal 樣式 =============
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+
+  .modal {
+    background: white;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s;
+    display: block;
+    position: relative;
+
+    &.modal-lg {
+      max-width: 800px;
+    }
+
+    &.modal-xl {
+      max-width: 1200px;
+    }
+  }
+}
+
+// ============= Modal 結構樣式 =============
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid $border-color;
+  background: linear-gradient(135deg, rgba($primary-color, 0.05), rgba($secondary-color, 0.02));
+
+  h4 {
+    margin: 0;
+    font-weight: 600;
+    color: $dark-color;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    color: $secondary-color;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+      background: rgba($danger-color, 0.1);
+      color: $danger-color;
+    }
+  }
+}
+
+.modal-body {
+  padding: 1.5rem;
+
+  // ============= 表單元素 =============
+  .form-group {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: $dark-color;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid $border-color;
+      border-radius: 0.375rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      transition: all 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+      }
+
+      &.readonly-input {
+        background-color: $light-color;
+        color: $secondary-color;
+        cursor: not-allowed;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+  }
+
+  .form-row {
+    display: flex;
+    gap: 1rem;
+
+    .form-group {
+      flex: 1;
+
+      &.half {
+        flex: 1;
+      }
+    }
+  }
+
+  .checkbox-group {
+    label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: normal;
+
+      input[type="checkbox"] {
+        width: auto;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid $border-color;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  background: rgba($light-color, 0.5);
+
+  .btn {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 80px;
+
+    &.btn-primary {
+      background: linear-gradient(135deg, $primary-color, darken($primary-color, 10%));
+      border-color: $primary-color;
+      color: white;
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba($primary-color, 0.3);
+      }
+    }
+
+    &.btn-secondary {
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+      color: white;
+
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+// ============= 載入動畫 =============
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+
+  .spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0.25rem solid rgba($primary-color, 0.3);
+    border-radius: 50%;
+    border-top-color: $primary-color;
+    animation: spin 1s infinite linear;
+  }
+}
+
+// ============= 用戶 Modal 特定樣式 =============
+.user-modal {
+  .form-group {
+    &.required label::after {
+      content: " *";
+      color: $danger-color;
+    }
+  }
+}
+
+// ============= 課程 Modal 特定樣式 =============
+.course-modal {
+  .course-title {
+    margin-bottom: 1.5rem;
+    color: $primary-color;
+    font-weight: 600;
+  }
+
+  .course-info {
+    .info-item {
+      display: flex;
+      margin-bottom: 0.75rem;
+
+      .label {
+        font-weight: 600;
+        min-width: 120px;
+        color: $secondary-color;
+      }
+
+      .value {
+        flex: 1;
+        color: $dark-color;
+      }
+    }
+  }
+
+  .enrollment-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid $border-color;
+
+    h5 {
+      margin-bottom: 1rem;
+      color: $primary-color;
+    }
+
+    .stats-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+
+      .stat-item {
+        background: rgba($primary-color, 0.05);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+
+        .stat-label {
+          display: block;
+          font-size: 0.875rem;
+          color: $secondary-color;
+          margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: $primary-color;
+        }
+      }
+    }
+
+    .note {
+      background: rgba($info-color, 0.1);
+      border-left: 4px solid $info-color;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 0.375rem 0.375rem 0;
+
+      i {
+        margin-right: 0.5rem;
+        color: $info-color;
+      }
+    }
+  }
+
+  .status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    &.available {
+      background: rgba($success-color, 0.2);
+      color: darken($success-color, 20%);
+    }
+
+    &.unavailable {
+      background: rgba($danger-color, 0.2);
+      color: darken($danger-color, 20%);
+    }
+  }
+}
+
+// ============= 邀請碼 Modal 特定樣式 =============
+.invitation-code-modal {
+  .code-text {
+    font-family: 'Courier New', monospace;
+    background: rgba($primary-color, 0.1);
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    color: $primary-color;
+  }
+
+  .info-section {
+    background: rgba($light-color, 0.7);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+
+    .info-item {
+      display: flex;
+      margin-bottom: 0.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .label {
+        font-weight: 600;
+        min-width: 100px;
+        color: $secondary-color;
+      }
+
+      .value {
+        flex: 1;
+        color: $dark-color;
+      }
+    }
+  }
+
+  .code-info-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba($primary-color, 0.05), rgba($info-color, 0.03));
+    border-radius: 0.75rem;
+    border: 1px solid rgba($primary-color, 0.1);
+
+    h5 {
+      margin-bottom: 1.5rem;
+      color: $primary-color;
+      font-weight: 600;
+    }
+  }
+
+  .usage-section {
+    h5 {
+      margin-bottom: 1rem;
+      color: $dark-color;
+      font-weight: 600;
+    }
+  }
+
+  .status-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    &.active {
+      background: rgba($success-color, 0.2);
+      color: darken($success-color, 20%);
+    }
+
+    &.inactive {
+      background: rgba($danger-color, 0.2);
+      color: darken($danger-color, 20%);
+    }
+
+    &.used {
+      background: rgba($warning-color, 0.2);
+      color: darken($warning-color, 30%);
+    }
+
+    &.unused {
+      background: rgba($info-color, 0.2);
+      color: darken($info-color, 30%);
+    }
+  }
+
+  .usage-table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid $border-color;
+    border-radius: 0.5rem;
+    background: white;
+  }
+
+  .usage-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid rgba($border-color, 0.5);
+    }
+
+    th {
+      background: $light-color;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      color: $secondary-color;
+    }
+
+    tr:hover {
+      background: rgba($primary-color, 0.03);
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: $secondary-color;
+
+    i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+// ============= 課程詳情 Modal 教師格 =============
+.teacher-info {
+  padding: 8px 0;
+
+  .static-field {
+    display: block;
+    padding: 6px 12px;
+    background: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    color: #495057;
+  }
+
+  .form-text {
+    margin-top: 4px;
+  }
+}
+
+
+// ============= 動畫 =============
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ============= 響應式設計 =============
+@media (max-width: 768px) {
+  .modal-overlay .modal {
+    max-width: 95%;
+    margin: 1rem;
+
+    &.modal-lg {
+      max-width: 95%;
+    }
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .course-modal .stats-summary {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,361 @@
+@import "bootstrap/scss/bootstrap";
+
+// 更新配色方案 - 豐富多彩的漸變色系
+$primary: #4e54c8; // 紫藍色
+$secondary: #8f94fb; // 淺紫色
+$success: #0bab64; // 翠綠色
+$danger: #f43b47; // 鮮紅色
+$warning: #ff9a44; // 橙色
+$info: #00b8d4; // 青藍色
+$light: #f8f9fa;
+$dark: #2c3e50; // 深靛藍色
+
+// 額外的輔助顏色
+$accent1: #f7971e; // 橙黃色
+$accent2: #6a11cb; // 深紫色
+
+// 自定義字體大小
+$font-size-base: 1rem;
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 2;
+$h5-font-size: $font-size-base * 1.25;
+
+// 間距和圓角
+$border-radius: 0.5rem;
+$border-radius-lg: 0.75rem;
+$box-shadow: 0 0.5rem 1rem rgba($dark, 0.15);
+$transition-base: all 0.3s ease;
+
+// 全域樣式
+body {
+  font-family: 'Noto Sans TC', '微軟正黑體', sans-serif;
+  color: $dark;
+  background-color: #f5f7fa;
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #eef1f5 100%);
+}
+
+// 首頁特定樣式
+.home-page {
+  padding: 2rem 0;
+
+  // 標題區塊樣式
+  header {
+    margin-bottom: 3rem;
+
+    .display-4 {
+      background: linear-gradient(to right, $accent2, $primary, $secondary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+
+      @include media-breakpoint-down(md) {
+        font-size: 2rem;
+      }
+    }
+
+    .lead {
+      color: $dark;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      padding: 0.6rem 1.5rem;
+      font-weight: 500;
+      border-radius: $border-radius;
+
+      &.btn-primary {
+        background: linear-gradient(135deg, $primary, $accent2);
+        border: none;
+        box-shadow: 0 4px 15px rgba($primary, 0.3);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba($primary, 0.4);
+        }
+      }
+
+      &.btn-outline-secondary {
+        border: 2px solid;
+        border-image: linear-gradient(135deg, $secondary, $accent1) 1;
+        color: $secondary;
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+          color: white;
+
+          &:before {
+            opacity: 1;
+          }
+        }
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, $secondary, $accent1);
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          border-radius: $border-radius;
+        }
+      }
+    }
+  }
+
+  // 卡片樣式 - 每張卡片有不同的顏色
+  .dashboard-card {
+    transition: $transition-base;
+    border-radius: $border-radius-lg;
+    border: none;
+    overflow: hidden;
+    background-color: white;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba($dark, 0.1);
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+
+    .icon-wrapper {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 20px;
+        z-index: -1;
+        opacity: 0.2;
+      }
+
+      i {
+        font-size: 2rem;
+      }
+    }
+
+    // 學生卡片
+    &:nth-child(1) .icon-wrapper {
+      color: $primary;
+
+      &:before {
+        background: linear-gradient(135deg, $primary, $secondary);
+        opacity: 0.15;
+      }
+    }
+
+    // 教師卡片
+    &:nth-child(2) .icon-wrapper {
+      color: $success;
+
+      &:before {
+        background: linear-gradient(135deg, $success, #3cba92);
+        opacity: 0.15;
+      }
+    }
+
+    // 管理員卡片
+    &:nth-child(3) .icon-wrapper {
+      color: $accent2;
+
+      &:before {
+        background: linear-gradient(135deg, $accent2, $secondary);
+        opacity: 0.15;
+      }
+    }
+
+    .card-title {
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    // 為每張卡片設置不同標題顏色
+    &:nth-child(1) .card-title {
+      color: $primary;
+    }
+
+    &:nth-child(2) .card-title {
+      color: $success;
+    }
+
+    &:nth-child(3) .card-title {
+      color: $accent2;
+    }
+
+    .card-text {
+      color: lighten($dark, 20%);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      padding: 0.6rem 1.5rem;
+      font-weight: 500;
+      border-radius: $border-radius;
+      color: white;
+    }
+
+    // 為每張卡片設置不同按鈕顏色
+    &:nth-child(1) .btn-primary {
+      background: linear-gradient(135deg, $primary, $secondary);
+      border: none;
+      box-shadow: 0 4px 15px rgba($primary, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($primary, 0.4);
+      }
+    }
+
+    &:nth-child(2) .btn-primary {
+      background: linear-gradient(135deg, $success, #3cba92);
+      border: none;
+      box-shadow: 0 4px 15px rgba($success, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($success, 0.4);
+      }
+    }
+
+    &:nth-child(3) .btn-primary {
+      background: linear-gradient(135deg, $accent2, $secondary);
+      border: none;
+      box-shadow: 0 4px 15px rgba($accent2, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($accent2, 0.4);
+      }
+    }
+  }
+
+  // 功能區塊樣式
+  .features-section {
+    border-radius: $border-radius-lg;
+    background-color: white;
+    box-shadow: 0 5px 20px rgba($dark, 0.05);
+    margin: 4rem 0;
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, $primary, $accent1, $success, $accent2);
+    }
+
+    h2 {
+      font-weight: 700;
+      color: $dark;
+      position: relative;
+      padding-bottom: 1rem;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, $primary, $accent2);
+        border-radius: 2px;
+      }
+    }
+
+    .feature-item {
+      padding: 1.5rem;
+      transition: $transition-base;
+      border-radius: $border-radius;
+
+      &:hover {
+        background-color: white;
+        box-shadow: 0 10px 25px rgba($dark, 0.08);
+        transform: translateY(-5px);
+      }
+
+      // 為每個功能項設置不同顏色
+      &:nth-child(1) i {
+        color: $primary;
+        background-color: rgba($primary, 0.1);
+      }
+
+      &:nth-child(2) i {
+        color: $success;
+        background-color: rgba($success, 0.1);
+      }
+
+      &:nth-child(3) i {
+        color: $warning;
+        background-color: rgba($warning, 0.1);
+      }
+
+      &:nth-child(4) i {
+        color: $accent2;
+        background-color: rgba($accent2, 0.1);
+      }
+
+      i {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin: 0 auto;
+        transition: all 0.3s ease;
+      }
+
+      &:hover i {
+        transform: scale(1.1);
+      }
+
+      h5 {
+        margin-top: 1rem;
+        font-weight: 600;
+        color: $dark;
+      }
+    }
+  }
+
+  // 響應式調整
+  @include media-breakpoint-down(md) {
+    .container {
+      padding: 0 1.5rem;
+    }
+
+    .features-section {
+      padding: 2rem 1rem;
+    }
+
+    .dashboard-card .card-body {
+      padding: 1.5rem;
+    }
+  }
+}
