@@ -152,17 +152,12 @@ fullstack-student-information-system/
    {
      "profiles": {
          "https": {
-            "commandName": "Project",
-            "dotnetRunMessages": true,
-            "launchBrowser": false,
-            "applicationUrl": "https://localhost:7001;http://localhost:5062",
-            "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development"
-            }
+            "applicationUrl": "https://localhost:7001;http://localhost:5062"
          },
      }
    }
    ```
+   > **Note**: If this file doesn't exist, the application will use default ports. You can create it if you need specific port configuration.
 4. Configure the database connection string in `appsettings.json`:
    ```json
    "ConnectionStrings": {
