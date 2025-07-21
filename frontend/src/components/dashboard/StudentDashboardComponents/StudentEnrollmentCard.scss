@@ -1,0 +1,314 @@
+@import "bootstrap/scss/bootstrap";
+
+$primary: #4e54c8;
+$success: #0bab64;
+$warning: #ff9a44;
+$danger: #f43b47;
+$info: #00b8d4;
+$dark: #2c3e50;
+
+.student-enrollment-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 8px 25px rgba($dark, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  border: none;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba($dark, 0.15);
+  }
+
+  // 頂部狀態標籤
+  .status-badge-top {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .status-badge {
+      padding: 0.4rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba($dark, 0.2);
+      display: flex;
+      align-items: center;
+
+      &.status-enrolled {
+        background: linear-gradient(135deg, $success, lighten($success, 10%));
+        color: white;
+      }
+
+      &.status-withdrawn {
+        background: linear-gradient(135deg, $warning, lighten($warning, 10%));
+        color: white;
+      }
+
+      &.status-completed {
+        background: linear-gradient(135deg, $info, lighten($info, 10%));
+        color: white;
+      }
+    }
+
+    .grade-badge {
+      padding: 0.3rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, $dark, lighten($dark, 10%));
+      color: white;
+      box-shadow: 0 2px 8px rgba($dark, 0.3);
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  // 狀態特定的邊框顏色
+  &.status-enrolled {
+    border-top: 4px solid $success;
+  }
+
+  &.status-withdrawn {
+    border-top: 4px solid $warning;
+  }
+
+  &.status-completed {
+    border-top: 4px solid $info;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+    padding-top: 2rem; // 為狀態標籤留空間
+
+    .course-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $dark;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+      padding-right: 2rem; // 為狀態標籤留空間
+    }
+
+    .course-description {
+      color: lighten($dark, 20%);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .course-details {
+      margin-bottom: 1.25rem;
+
+      .detail-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        font-size: 0.9rem;
+
+        i {
+          color: $primary;
+          width: 20px;
+        }
+
+        strong {
+          color: $dark;
+          margin-right: 0.5rem;
+          font-weight: 600;
+          min-width: 70px;
+        }
+
+        .enrollment-status {
+          margin-left: 0.5rem;
+          padding: 0.2rem 0.5rem;
+          border-radius: 15px;
+          font-size: 0.75rem;
+          font-weight: 600;
+
+          &.open {
+            background: rgba($success, 0.1);
+            color: $success;
+            border: 1px solid rgba($success, 0.3);
+          }
+
+          &.closed {
+            background: rgba($danger, 0.1);
+            color: $danger;
+            border: 1px solid rgba($danger, 0.3);
+          }
+        }
+      }
+    }
+
+    .comments-section {
+      margin-bottom: 1.25rem;
+      padding: 1rem;
+      background: rgba($primary, 0.03);
+      border-radius: 0.75rem;
+      border-left: 4px solid $primary;
+
+      .comments-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        color: $dark;
+        font-weight: 600;
+
+        i {
+          color: $primary;
+        }
+      }
+
+      .comments-text {
+        margin: 0;
+        color: lighten($dark, 15%);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+    }
+
+    .enrollment-progress {
+      margin-bottom: 1.25rem;
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: $dark;
+      }
+
+      .progress {
+        height: 8px;
+        border-radius: 50px;
+        background-color: rgba($primary, 0.1);
+        overflow: hidden;
+
+        .progress-bar {
+          background: linear-gradient(90deg, $primary, lighten($primary, 15%));
+          border-radius: 50px;
+          transition: width 0.6s ease;
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(white, 0.3), transparent);
+            animation: shimmer 2s infinite;
+          }
+        }
+      }
+    }
+
+    .btn {
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(white, 0.2), transparent);
+        transition: left 0.5s;
+      }
+
+      &:hover::before {
+        left: 100%;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      &.btn-outline-danger:hover {
+        box-shadow: 0 8px 25px rgba($danger, 0.3);
+      }
+
+      &.btn-outline-primary:hover {
+        box-shadow: 0 8px 25px rgba($primary, 0.3);
+      }
+
+      &.btn-outline-success {
+        &:disabled {
+          opacity: 0.8;
+          cursor: not-allowed;
+          transform: none !important;
+        }
+      }
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  // 響應式設計
+  @include media-breakpoint-down(md) {
+    .card-body {
+      padding: 1rem;
+      padding-top: 1.5rem;
+
+      .course-title {
+        font-size: 1.1rem;
+        padding-right: 1.5rem;
+      }
+
+      .course-description {
+        font-size: 0.85rem;
+      }
+
+      .detail-item {
+        font-size: 0.85rem;
+        
+        strong {
+          min-width: 60px;
+        }
+      }
+    }
+
+    .status-badge-top {
+      top: 10px;
+      right: 10px;
+
+      .status-badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+      }
+
+      .grade-badge {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

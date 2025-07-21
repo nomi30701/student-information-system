@@ -1,0 +1,57 @@
+# Git
+.git
+.gitignore
+README.md
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Visual Studio / .NET Core
+bin/
+obj/
+*.user
+.vs/
+.vscode/
+
+# Configuration files (will be handled by environment variables)
+appsettings.Development.json
+appsettings.Production.json
+
+# Launch settings
+Properties/launchSettings.json
+
+# Logs
+*.log
+logs/
+
+# Database files
+*.mdf
+*.ldf
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Test results
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+
+# NuGet packages (will be restored during build)
+packages/
+*.nupkg
+
+# Build artifacts that will be regenerated
+publish/
+dist/

@@ -1,0 +1,16 @@
+﻿# Visual Studio / .NET Core
+bin/
+obj/
+*.user
+
+# Configuration files (contains sensitive data)
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+
+# Launch settings (local development configuration)
+Properties/launchSettings.json
+
+# Build artifacts that will be regenerated
+publish/
+dist/

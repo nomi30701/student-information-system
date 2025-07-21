@@ -1,0 +1,492 @@
+@import "bootstrap/scss/bootstrap";
+
+$primary: #4e54c8;
+$secondary: #8f94fb;
+$success: #0bab64;
+$danger: #f43b47;
+$warning: #ff9a44;
+$info: #00b8d4;
+$light: #f8f9fa;
+$dark: #2c3e50;
+$accent1: #f7971e;
+$accent2: #6a11cb;
+
+// 統一的設計變數
+$card-border-radius: 1rem;
+$card-shadow: 0 8px 25px rgba($dark, 0.08);
+$card-shadow-hover: 0 15px 35px rgba($dark, 0.15);
+$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+.course-card {
+  border: none;
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+  transition: $transition-base;
+  overflow: hidden;
+  position: relative;
+  background: white;
+  height: 100%;
+
+  // 懸停效果
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: $card-shadow-hover;
+
+    .card-body::before {
+      opacity: 1;
+    }
+
+    .course-title {
+      color: $primary;
+    }
+  }
+
+  // 頂部裝飾線
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $primary, $accent2, $secondary);
+    z-index: 1;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+
+    // 背景裝飾
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(45deg, rgba($primary, 0.05), rgba($accent2, 0.03));
+      border-radius: 50%;
+      opacity: 0;
+      transition: $transition-base;
+      z-index: 0;
+    }
+
+    >* {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  // 課程標題
+  .course-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $dark;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    transition: $transition-base;
+
+    // 限制行數
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // 課程描述
+  .card-text {
+    color: lighten($dark, 15%);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+
+    // 描述文字限制行數
+    &:first-of-type {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+  }
+
+  // 課程詳情區域
+  .course-details {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+
+    .card-text {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+
+      strong {
+        color: $dark;
+        font-weight: 600;
+        min-width: 70px;
+        font-size: 0.85rem;
+      }
+
+      // 特殊樣式的值
+      .value {
+        flex: 1;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  // 狀態標籤樣式
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    &.status-enrolled {
+      background: linear-gradient(135deg, rgba($success, 0.1), rgba($success, 0.05));
+      color: darken($success, 10%);
+      border: 1px solid rgba($success, 0.2);
+
+      &::before {
+        content: '✓';
+        margin-right: 0.25rem;
+        font-weight: bold;
+      }
+    }
+
+    &.status-withdrawn {
+      background: linear-gradient(135deg, rgba($warning, 0.1), rgba($warning, 0.05));
+      color: darken($warning, 15%);
+      border: 1px solid rgba($warning, 0.2);
+
+      &::before {
+        content: '↻';
+        margin-right: 0.25rem;
+      }
+    }
+
+    &.status-completed {
+      background: linear-gradient(135deg, rgba($info, 0.1), rgba($info, 0.05));
+      color: darken($info, 10%);
+      border: 1px solid rgba($info, 0.2);
+
+      &::before {
+        content: '★';
+        margin-right: 0.25rem;
+      }
+    }
+  }
+
+  // 報名狀態樣式
+  .enrollment-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    &.open {
+      background: linear-gradient(135deg, rgba($success, 0.1), rgba($success, 0.05));
+      color: $success;
+      border: 1px solid rgba($success, 0.3);
+
+      &::before {
+        content: '●';
+        margin-right: 0.3rem;
+        color: $success;
+        animation: pulse 2s infinite;
+      }
+    }
+
+    &.closed {
+      background: linear-gradient(135deg, rgba($danger, 0.1), rgba($danger, 0.05));
+      color: $danger;
+      border: 1px solid rgba($danger, 0.3);
+
+      &::before {
+        content: '●';
+        margin-right: 0.3rem;
+        color: $danger;
+      }
+    }
+  }
+
+  // 人數顯示
+  .enrollment-count {
+    .text-danger {
+      font-weight: 600;
+      color: $danger !important;
+    }
+  }
+
+  // 進度條樣式
+  .enrollment-progress {
+    margin: 1rem 0;
+
+    .progress {
+      height: 8px;
+      border-radius: 50px;
+      background-color: rgba($primary, 0.1);
+      overflow: visible;
+
+      .progress-bar {
+        border-radius: 50px;
+        background: linear-gradient(90deg, $primary, $accent2);
+        position: relative;
+        transition: width 0.6s ease;
+
+        // 進度條末端的小圓點
+        &::after {
+          content: '';
+          position: absolute;
+          right: -4px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 12px;
+          height: 12px;
+          background: white;
+          border: 2px solid $primary;
+          border-radius: 50%;
+          box-shadow: 0 2px 4px rgba($dark, 0.2);
+        }
+
+        // 滿額警示色
+        &.bg-danger {
+          background: linear-gradient(90deg, $warning, $danger) !important;
+
+          &::after {
+            border-color: $danger;
+          }
+        }
+      }
+    }
+
+    small {
+      display: block;
+      text-align: center;
+      margin-top: 0.5rem;
+      color: lighten($dark, 30%);
+      font-weight: 500;
+    }
+  }
+
+  // 按鈕樣式
+  .btn {
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: $transition-base;
+    position: relative;
+    overflow: hidden;
+
+    // 按鈕內的光澤效果
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(white, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    &:hover::before {
+      left: 100%;
+    }
+
+    &.btn-primary {
+      background: linear-gradient(135deg, $primary, $accent2);
+      border: none;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba($primary, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    &.btn-outline-danger {
+      color: $danger;
+      border: 2px solid $danger;
+      background: transparent;
+
+      &:hover {
+        background: $danger;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba($danger, 0.3);
+      }
+    }
+
+    &.btn-outline-primary {
+      color: $primary;
+      border: 2px solid $primary;
+      background: transparent;
+
+      &:hover {
+        background: $primary;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba($primary, 0.3);
+      }
+    }
+
+    &.btn-secondary {
+      background: linear-gradient(135deg, lighten($dark, 10%), lighten($dark, 5%));
+      border: none;
+      color: white;
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none !important;
+      }
+    }
+
+    &.btn-outline-secondary {
+      color: lighten($dark, 10%);
+      border: 2px solid lighten($dark, 30%);
+      background: transparent;
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// 特殊狀態的卡片
+.course-card.not-enrollable {
+  .card-body {
+    background: linear-gradient(135deg, rgba($danger, 0.02), rgba($danger, 0.01));
+  }
+
+  &::before {
+    background: linear-gradient(90deg, $danger, darken($danger, 10%));
+  }
+}
+
+.course-card.course-full {
+  .card-body {
+    background: linear-gradient(135deg, rgba($warning, 0.02), rgba($warning, 0.01));
+  }
+
+  &::before {
+    background: linear-gradient(90deg, $warning, $accent1);
+  }
+}
+
+// 動畫效果
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// 卡片進入動畫
+.course-card {
+  animation: slideInUp 0.6s ease-out;
+
+  // 延遲動畫為每張卡片
+  &:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  &:nth-child(4) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(5) {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+
+  &:nth-child(7) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(8) {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(9) {
+    animation-delay: 0.3s;
+  }
+}
+
+// 響應式設計
+@include media-breakpoint-down(lg) {
+  .course-card {
+    .card-body {
+      padding: 1.25rem;
+    }
+
+    .course-title {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .course-card {
+    margin-bottom: 1.5rem;
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .course-title {
+      font-size: 1rem;
+    }
+
+    .card-text {
+      font-size: 0.85rem;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }
+}
