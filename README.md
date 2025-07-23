@@ -129,46 +129,12 @@ fullstack-student-information-system/
 ## ⚙️ Installation and Setup
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (for frontend)
-- [.NET SDK](https://dotnet.microsoft.com/download) (version 8.0 or higher)
-- [Microsoft SQL Server Express](https://www.microsoft.com/sql-server/sql-server-downloads) or LocalDB
-- [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)
 
 ### Frontend Setup
-1. Navigate to the frontend directory: `cd frontend`
-2. Install dependencies: `npm install`
-3. Create a `.env` file in the frontend root directory and configure the backend API URL:
-   ```env
-   VITE_API_URL=https://localhost:7001
-   ```
-   > **Note**: Make sure the API URL matches your backend server address. Check `backend/student_information_system/Properties/launchSettings.json` for the correct URL.
-4. Start the development server: `npm run dev`
 
 ### Backend Setup
-1. Navigate to the backend directory: `cd backend/student_information_system`
-2. Restore NuGet packages: `dotnet restore`
-3. Check the API URL in `Properties/launchSettings.json` to ensure frontend `.env` matches:
-   ```json
-   {
-     "profiles": {
-         "https": {
-            "applicationUrl": "https://localhost:7001;http://localhost:5062"
-         },
-     }
-   }
-   ```
-   > **Note**: If this file doesn't exist, the application will use default ports. You can create it if you need specific port configuration.
-4. Configure the database connection string in `appsettings.json`:
-   ```json
-   "ConnectionStrings": {
-     "DefaultConnection": "Server=(localdb);Database=Std_info_sys;User ID=(userid);Password=(password);TrustServerCertificate=true"
-   }
-   ```
-5. Create the database:
-   - **Using EF Core**: Run `dotnet ef database update` to apply migrations
-   - **Using SQL Scripts**: In SSMS, execute `database/script.sql`.
-6. Start the API server: `dotnet run`
 
+### Database Setup
 ---
 
 ## 🖥️ System Demonstration
