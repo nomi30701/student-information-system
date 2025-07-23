@@ -1,6 +1,4 @@
-import axios from "../utils/axiosConfig";
-
-const API_URL = `${import.meta.env.VITE_API_URL}/api/user`;
+import axiosInstance from "../utils/axiosConfig";
 
 export const getUsers = async (params = {}) => {
   const { page = 1, pageSize = 10, search = "", roleId = "" } = params;
@@ -9,25 +7,25 @@ export const getUsers = async (params = {}) => {
   if (search) url += `&search=${encodeURIComponent(search)}`;
   if (roleId) url += `&roleId=${roleId}`;
 
-  const response = await axios.get(url);
+  const response = await axiosInstance.get(url);
   return response.data;
 };
 
 export const getAllUserNameByRoleid = async (roleId) => {
-  const response = await axios.get(`/user/allUserName/${roleId}`);
+  const response = await axiosInstance.get(`/user/allUserName/${roleId}`);
   return response.data;
 };
 
 export const createUser = async (userData) => {
-  const response = await axios.post("/user", userData);
+  const response = await axiosInstance.post("/user", userData);
   return response.data;
 };
 
 export const updateUser = async (userId, userData) => {
-  const response = await axios.put(`/user/${userId}`, userData);
+  const response = await axiosInstance.put(`/user/${userId}`, userData);
   return response.data;
 };
 
 export const deleteUser = async (userId) => {
-  await axios.delete(`/user/${userId}`);
+  await axiosInstance.delete(`/user/${userId}`);
 };

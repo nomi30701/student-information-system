@@ -1,6 +1,6 @@
-import axios from "../utils/axiosConfig";
+import axiosInstance from "../utils/axiosConfig";
 
 export const getRoles = async () => {
-  const response = await axios.get("/role");
+  const response = await axiosInstance.get("/role");
   return response.data;
 };

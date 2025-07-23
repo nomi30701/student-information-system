@@ -1,7 +1,7 @@
-import axios from "../utils/axiosConfig";
+import axiosInstance from "../utils/axiosConfig";
 
 export const enrollCourse = async (userId, courseId) => {
-  const response = await axios.post(`/enrollment/Enroll`, {
+  const response = await axiosInstance.post(`/enrollment/Enroll`, {
     StudentId: userId,
     CourseId: courseId,
   });
@@ -9,7 +9,7 @@ export const enrollCourse = async (userId, courseId) => {
 };
 
 export const cancelEnrollment = async (userId, courseId) => {
-  const response = await axios.delete(`/enrollment/cancelEnroll`, {
+  const response = await axiosInstance.delete(`/enrollment/cancelEnroll`, {
     data: {
       studentId: userId,
       courseId: courseId,
@@ -19,7 +19,7 @@ export const cancelEnrollment = async (userId, courseId) => {
 };
 
 export const reEnroll = async (userId, courseId) => {
-  const response = await axios.put(`/enrollment/reEnroll`, {
+  const response = await axiosInstance.put(`/enrollment/reEnroll`, {
     StudentId: userId,
     CourseId: courseId,
   });
@@ -27,11 +27,13 @@ export const reEnroll = async (userId, courseId) => {
 };
 
 export const getEnrollmentByStudentId = async (studentId) => {
-  const response = await axios.get(`/enrollment?studentId=${studentId}`);
+  const response = await axiosInstance.get(
+    `/enrollment?studentId=${studentId}`
+  );
   return response.data;
 };
 
 export const getEnrollmentsByCourseId = async (courseId) => {
-  const response = await axios.get(`/enrollment?courseId=${courseId}`);
+  const response = await axiosInstance.get(`/enrollment?courseId=${courseId}`);
   return response.data;
 };

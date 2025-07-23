@@ -1,8 +1,8 @@
-import axios from "../utils/axiosConfig";
+import axiosInstance from "../utils/axiosConfig";
 
 const authService = {
   register: async (userData) => {
-    const response = await axios.post(`/auth/register`, userData);
+    const response = await axiosInstance.post(`/auth/register`, userData);
 
     if (response.data.token) {
       localStorage.setItem("authToken", response.data.token);
@@ -15,7 +15,7 @@ const authService = {
   },
 
   login: async (username, password) => {
-    const response = await axios.post(`/auth/login`, {
+    const response = await axiosInstance.post(`/auth/login`, {
       username,
       password,
     });
@@ -32,7 +32,7 @@ const authService = {
 
   logout: async () => {
     try {
-      await axios.post("/auth/logout");
+      await axiosInstance.post("/auth/logout");
     } catch (error) {
       console.error("Logout request failed:", error);
     } finally {
@@ -43,7 +43,7 @@ const authService = {
   },
 
   getCurrentUser: async () => {
-    const response = await axios.get(`/auth/current`);
+    const response = await axiosInstance.get(`/auth/current`);
     return response.data;
   },
 
